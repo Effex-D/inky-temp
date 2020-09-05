@@ -1,0 +1,6 @@
+{
+  "city_id": "numeric_city_id",
+  "api_key": "add_your_api_key_here",
+  "db_name": "weather_data",
+  "collection_name": "weather_store"
+}
