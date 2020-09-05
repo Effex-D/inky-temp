@@ -2,7 +2,7 @@ import inkyphat
 from PIL import ImageFont
 from random import randint
 
-class DisplayDriver()
+class DisplayDriver():
 
     def __init__(self):
         # Do I need to initialize something?
