@@ -2,7 +2,7 @@ import DisplayDriver
 import WeatherDataTools
 import json
 
-with open('config.json') as config_file:
+with open('/home/effex/inky-temp/config.json') as config_file:
     init_values = json.load(config_file)
 
 wdt = WeatherDataTools.WeatherDataTools(city_id=init_values['city_id'],
@@ -15,15 +15,17 @@ def weather_display_system():
 
     input = []
 
-    try:
-        wdt.weather_data_process()
-    except:
-        print("Data update failed. Defaulting to stored data.")
+    #try:
+    wdt.weather_data_process()
+    #except:
+    #    print("Data update failed. Defaulting to stored data.")
 
     try:
         useful_info = wdt.return_weather_Data()
     except:
         useful_info = {"condition":"ERROR","current_temp":00,"min_temp":00,"max_temp":00,"rain_chance":False}
+
+    print(useful_info)
 
     message = useful_info['condition']
 
@@ -56,3 +58,6 @@ def weather_display_system():
 
     dd.display_notification_message(data=input)
 
+
+
+weather_display_system()

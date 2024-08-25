@@ -1,8 +1,8 @@
 import inkyphat
-from PIL import ImageFont
+from PIL import ImageFont, Image, ImageDraw
 from random import randint
 
-class DisplayDriver()
+class DisplayDriver():
 
     def __init__(self):
         # Do I need to initialize something?
@@ -15,6 +15,7 @@ class DisplayDriver()
         message3 = data[2]
 
         inkyphat.set_colour("black")
+        inkyphat.set_rotation(180)
 
         font = ImageFont.truetype(inkyphat.fonts.FredokaOne, 26)
         font2 = ImageFont.truetype(inkyphat.fonts.FredokaOne, 20)
