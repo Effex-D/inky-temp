@@ -23,7 +23,9 @@ def weather_display_system():
     try:
         useful_info = wdt.return_weather_Data()
     except:
-        useful_info = {"condition":"ERROR","current_temp":00,"min_temp":00,"max_temp":00,"rain_chance":False}
+        useful_info = {"condition":"ERROR","current_temp":00,"min_temp":00,
+                          "max_temp":00,"rain_chance":False, "wind_speed":00,
+                             "wind_direction":"XX"}
 
     print(useful_info)
 
@@ -38,6 +40,8 @@ def weather_display_system():
     temp = str(useful_info['current_temp']) + "°"
     min = str(useful_info['min_temp']) + "°"
     max = str(useful_info['max_temp']) + "°"
+    wind_speed = str(useful_info['wind_speed']) + "M/s"
+    wind_dir = str(useful_info['wind_direction'])
 
     rain_check = useful_info['rain_chance']
 
@@ -48,7 +52,7 @@ def weather_display_system():
 
     first_display = temp + " - " + message
 
-    second_display = "Risk of Rain: " + str(rain_chance)
+    second_display = "Rain: " + str(rain_chance) + " Wind: " + wind_speed + " " + wind_dir
 
     third_display = "min: " + min + " - max: " + max
 

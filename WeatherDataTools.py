@@ -12,6 +12,15 @@ class WeatherDataTools:
         self.db_name = db_name
         self.collection_name = collection_name
 
+    def angle_to_direction(self, angle):
+        # Define the compass directions
+        directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
+        # Normalize the angle to be within 0-360 degrees
+        angle = angle % 360
+        #  Calculate the index for the direction
+        index = round(angle / 45) % 8
+        return directions[index]
+
     def get_weather_data(self):
         baseurl = "http://api.openweathermap.org/data/2.5/weather?id={}".format(self.city_id)
 
@@ -27,22 +36,32 @@ class WeatherDataTools:
             print("No weather data collected")
             return False
 
-        print(weather_info)
+#        print(weather_info)
 
         weather_json = weather_info.json()
 
-        #print(weather_json)
+#        print(weather_json)
 
         current_temp = int(int(weather_json['main']['temp']) - 273.15)
         min_temp = int(int(weather_json['main']['temp_min']) - 273.15)
         max_temp = int(int(weather_json['main']['temp_max']) - 273.15)
         condition = weather_json['weather'][0]['description']
+        wind_speed = weather_json['wind']['speed']
+        wind_direction = weather_json['wind']['deg']
+
+#        print("Wimdy degs == " + str(wind_direction))
+
+        wind_direction = self.angle_to_direction(wind_direction)
+#        print("Wimdy string == " + str(wind_direction))
 
         return_data = {"current_temp":current_temp,
                        "min_temp": min_temp,
                        "max_temp": max_temp,
-                       "condition":condition}
+                       "condition":condition,
+                       "wind_speed":wind_speed,
+                       "wind_direction":wind_direction}
 
+#        print(return_data)
         return return_data
 
     def get_rain_data(self):
@@ -137,6 +156,9 @@ class WeatherDataTools:
             response_data['timestamp'] = record['timestamp']
             response_data['condition'] = record['condition']
             response_data['current_temp'] = record['current_temp']
+            response_data['wind_speed'] = record['wind_speed']
+            response_data['wind_direction'] = record['wind_direction']
+
 
         return response_data
 
