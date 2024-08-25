@@ -52,16 +52,17 @@ def weather_display_system():
 
     first_display = temp + " - " + message
 
-    second_display = "Rain: " + str(rain_chance) + " Wind: " + wind_speed + " " + wind_dir
+    second_display = "Risk of Rain: " + str(rain_chance)
 
-    third_display = "min: " + min + " - max: " + max
+    third_display = " Wind: " + wind_speed + " " + wind_dir
+
+    fourth_display = "min: " + min + " - max: " + max
 
     input.append(first_display)
     input.append(second_display)
     input.append(third_display)
+    input.append(fourth_display)
 
     dd.display_notification_message(data=input)
-
-
 
 weather_display_system()
